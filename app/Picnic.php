@@ -11,6 +11,7 @@ class Picnic extends Model
     // DEFINE RELATIONSHIPS --------------------------------------------------
     // define a many to many relationship
     // also call the linking table
+    protected $table = 'picnics';
     public function bears() {
         return $this->belongsToMany('Bear', 'bear_picnic', 'picnic_id', 'bear_id');
     }
