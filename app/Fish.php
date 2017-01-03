@@ -20,6 +20,6 @@ class Fish extends Model
 
 
     public function bear() {
-        return $this->belongsTo('Bear');
+        return $this->belongsTo('App\Bear');
     }
 }
