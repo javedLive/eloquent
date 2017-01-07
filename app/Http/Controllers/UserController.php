@@ -8,6 +8,8 @@ use App\Fish;
 use App\Tree;
 use App\Picnic;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
     public function getUser(){
@@ -121,10 +123,50 @@ class UserController extends Controller
 		$bear = Bear::whereDate('created_at', '=', date('Y-m-d'))->get();
 		$bear = Bear::whereDay('created_at', '=', date('d'))->get();
 		$bear = Bear::whereMonth('created_at', '=', date('m'))->get();
-		$bear = Bear::whereYear('created_at', '=', date('Y'))->get();
+		$bear = Bear::whereYear('created_at', '=', date('Y'))->get();		
 
+		/////****			Database: Query Builder				*****\\\\\
 
+		# Retrieving All Rows From A Table
+
+		$bears = DB::table('bears')->get();
+ 		
+		# Retrieving A Single Row / Column From A Table
+ 		
+		$bear = DB::table('bears')->where('name', 'Lawly')->first();
+		return $bear->name;													
+		# or 
+		$bear = DB::table('bears')->where('name', 'Lawly')->value('type');
+												
+
+		# Retrieving A List Of Column Values
+
+		$types = DB::table('bears')->pluck('type');
+
+		foreach ($types as $type)
+		 {
+		    echo $type."</br>";
+		 }										
  
- 
+		# Aggregates
+
+		$bears = DB::table('bears')->count();
+
+		$danger_level = DB::table('bears')->max('danger_level'); 
+
+		# Selects
+
+		$bears = DB::table('bears')->select('name', 'danger_level as danger')->get();	
+
+		#Inner Join Clause
+
+		$bears = DB::table('bears')
+            ->join('fish', 'bears.id', '=', 'fish.bear_id')
+            ->join('trees', 'bears.id', '=', 'trees.bear_id')
+            ->select('bears.*', 'trees.type', 'fish.weight')
+            ->get();
+
+        
+
     }
 }
