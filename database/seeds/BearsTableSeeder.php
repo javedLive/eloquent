@@ -28,7 +28,7 @@ class BearsTableSeeder extends Seeder
         $bearLawly = Bear::create(array(
             'name'         => 'Lawly',
             'type'         => 'Grizzly',
-            'danger_level' => 8
+            'password' => 8
         ));
 
         // bear 2 is named Cerms. He has a loud growl but is pretty much harmless.

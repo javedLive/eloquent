@@ -13,7 +13,7 @@ class UserController extends Controller
     public function getUser(){
 
   		 	
-		/*
+		
 		# CREATING RECORDS
 
 		// create a bear
@@ -116,11 +116,12 @@ class UserController extends Controller
 	    foreach ($grandCanyon->bears as $bear)
 	        echo $bear->name . ' ' . $bear->type . ' ' . $bear->danger_level."</br>"; 
 
-	    # Eloquent date filtering: whereDate() and other methods   
+	    # Eloquent date filtering: whereDate() and other methods
+
 		$bear = Bear::whereDate('created_at', '=', date('Y-m-d'))->get();
 		$bear = Bear::whereDay('created_at', '=', date('d'))->get();
 		$bear = Bear::whereMonth('created_at', '=', date('m'))->get();
-		$bear = Bear::whereYear('created_at', '=', date('Y'))->get();*/
+		$bear = Bear::whereYear('created_at', '=', date('Y'))->get();
 
 
  
